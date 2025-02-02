@@ -11,5 +11,5 @@ ENV NEKO_EPR="52000-52100"
 EXPOSE 8080
 
 # Start Neko in the foreground to prevent container exit
-CMD ["neko"]
+CMD ["neko","serve"]
 
