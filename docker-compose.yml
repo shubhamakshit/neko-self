@@ -1,0 +1,32 @@
+
+version: "3.4"
+services:
+  neko:
+    image: "m1k1o/neko:firefox"
+    restart: "unless-stopped"
+    shm_size: "2gb"
+    ports:
+      - "8080:8080"
+      - "52000-52100:52000-52100/udp"
+    environment:
+      NEKO_SCREEN: 1920x1080@30
+      NEKO_PASSWORD: neko
+      NEKO_PASSWORD_ADMIN: admin
+      NEKO_EPR: 52000-52100
+      NEKO_ICESERVERS: '[{ "urls": [ "turn:192.168.1.60:3478" ], "username":"neko", "credential":"neko" }, { "urls": [ "stun:stun.nextcloud.com:3478" ] }]'
+  coturn:
+    image: 'coturn/coturn:latest'
+    network_mode: "host"
+    command: |
+      -n
+      --realm=localhost
+      --fingerprint
+      --listening-ip=0.0.0.0
+      --external-ip=192.168.1.60
+      --listening-port=3478
+      --min-port=49160
+      --max-port=49200
+      --log-file=stdout
+      --user=neko:neko
+      --lt-cred-mech
+
