@@ -1,0 +1,13 @@
+M m1k1o/neko:firefox
+
+ENV NEKO_SCREEN="1920x1080@30"
+ENV NEKO_PASSWORD="neko"
+ENV NEKO_PASSWORD_ADMIN="admin"
+ENV NEKO_EPR="52000-52100"
+
+EXPOSE 8080
+EXPOSE 52000-52100/udp
+
+CMD ["/usr/bin/supervisord"]
+
+
