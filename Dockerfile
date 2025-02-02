@@ -1,4 +1,4 @@
-M m1k1o/neko:firefox
+FROM m1k1o/neko:firefox
 
 ENV NEKO_SCREEN="1920x1080@30"
 ENV NEKO_PASSWORD="neko"
